@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Cleanplicity</title>
+  <link rel="icon" type="image/jpg" href="images/icon.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle-label {
+      display: none;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+    }
+
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      display: block;
+      background: #333;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      position: absolute;
+    }
+
+    .nav-toggle-label span::before {
+      content: '';
+      top: -8px;
+    }
+
+    .nav-toggle-label span::after {
+      content: '';
+      top: 8px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      padding-left: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #d3036b;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle-label {
+        display: block;
+        z-index: 1001;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .nav-toggle:checked + .nav-toggle-label + .nav-links {
+        max-height: 300px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .hero {
+      background: linear-gradient(to bottom, #e0e0e0, #ffffff);
+      padding: 80px 20px 40px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #555;
+    }
+
+    .booking-form {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .booking-form label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .booking-form textarea {
+      resize: vertical;
+    }
+
+    .booking-form button {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .booking-form button:hover {
+      background-color: #e60073;
+    }
+
+    .confirmation-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .spinner {
+      display: none;
+      width: 30px;
+      height: 30px;
+      border: 4px solid #ccc;
+      border-top-color: #ff69b4;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .main-footer {
+      background-color: #f2f2f2;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #333;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="index.html" class="logo"><img src="images/team.png" alt="Cleanplicity Logo"></a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Book a Cleaning</h2>
+    <p>Fill in your details below and we’ll be in touch to confirm your appointment</p>
+  </section>
+
+  <section class="booking-form">
+    <form id="bookingForm" action="https://formspree.io/f/mjkydwjp" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="service">Select Service</label>
+      <select id="service" name="service">
+        <option value="regular">Regular Cleaning</option>
+        <option value="deep">Deep Cleaning</option>
+        <option value="commercial">Commercial Cleaning</option>
+      </select>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="notes">Additional Notes</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Any special instructions?"></textarea>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+
+    <div class="spinner" id="loadingSpinner"></div>
+    <div class="confirmation-message" id="confirmationMessage">
+      ✅ Thank you! Your booking request has been sent.
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Contact us: 068 510 1046 | WhatsApp: 068 510 1046 | South Africa</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/cleanplicity" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/cleanplicity_cleaning" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/27685101046" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p>&copy; 2025 Cleanplicity. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const confirmation = document.getElementById('confirmationMessage');
+    const spinner = document.getElementById('loadingSpinner');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      confirmation.style.display = 'none';
+      spinner.style.display = 'block';
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        spinner.style.display = 'none';
+        if (response.ok) {
+          form.reset();
+          confirmation.style.display = 'block';
+        } else {
+          alert('There was an error submitting the form.');
+        }
+      }).catch(error => {
+        spinner.style.display = 'none';
+        alert('Something went wrong. Please try again later.');
+      });
+    });
+  </script>
+</body>
+</html>

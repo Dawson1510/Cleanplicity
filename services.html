@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services - Cleanplicity</title>
+  <link rel="icon" type="image/jpg" href="images/icon.jpg"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle-label {
+      display: none;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+    }
+
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      display: block;
+      background: #333;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      position: absolute;
+    }
+
+    .nav-toggle-label span::before {
+      content: '';
+      top: -8px;
+    }
+
+    .nav-toggle-label span::after {
+      content: '';
+      top: 8px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      padding-left: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #d3036b;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle-label {
+        display: block;
+        z-index: 1001;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .nav-toggle:checked + .nav-toggle-label + .nav-links {
+        max-height: 300px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .services-section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .services-section h2 {
+      font-size: 2.5rem;
+      color: #222;
+      margin-bottom: 30px;
+    }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .service-card {
+      background-color: #fafafa;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.05);
+      padding: 25px;
+      width: 280px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease-in-out;
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      color: #d3036b;
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .main-footer {
+      background-color: #f2f2f2;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer-content p {
+      margin: 10px 0;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #333;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ff69b4;
+    }
+
+    @media (max-width: 768px) {
+      .service-list {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="index.html" class="logo"><img src="images/team.png" alt="logo"/></a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <h2>Our Cleaning Services</h2>
+    <div class="service-list">
+      <div class="service-card">
+        <img src="images/home-cleaning-01.JPG" alt="Home Cleaning" />
+        <h3>Home Cleaning</h3>
+        <p>From kitchens to bedrooms, we leave every corner of your home sparkling clean.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/office-cleaning-01.JPG" alt="Office Cleaning" />
+        <h3>Office Cleaning</h3>
+        <p>Professional and discreet service to maintain a spotless work environment.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/Carpet-Cleaning-01.JPG" alt="Carpet Cleaning" />
+        <h3>Carpet & Tile Cleaning</h3>
+        <p>Deep-cleaning solutions that restore your floors to their original beauty.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/window-cleaning-01.JPG" alt="Window Cleaning" />
+        <h3>Window & Solar Cleaning</h3>
+        <p>Streak-free cleaning to let the sunshine through — and power your panels efficiently.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Contact us: 068 510 1046 | WhatsApp: 068 510 1046 | South Africa</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/cleanplicity" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/cleanplicity_cleaning" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/27685101046" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p>&copy; 2025 Cleanplicity. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animation
+    const cards = document.querySelectorAll('.service-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
